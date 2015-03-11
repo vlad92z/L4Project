@@ -334,7 +334,9 @@ public class Demodulator {
 				return null;
 
 			}
+			
 			currentVal = iterator.next();
+			
 			for (orderIndex = 0; orderIndex < filterOrder; ++orderIndex) {
 				w0[orderIndex] = d1[orderIndex] * w1[orderIndex]
 						+ d2[orderIndex] * w2[orderIndex] + currentVal;
@@ -343,6 +345,8 @@ public class Demodulator {
 				w2[orderIndex] = w1[orderIndex];
 				w1[orderIndex] = w0[orderIndex];
 			}
+			System.out.println(currentVal);
+			
 			
 			sum += Math.abs(currentVal);
 			bitIndex += 1;

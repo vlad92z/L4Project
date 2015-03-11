@@ -131,7 +131,7 @@ public class Main {
 		}
 	}
 	
-	public static void highpass(float[] message, double s, double modIndex){
+	public static void highpass(float[] message, double baseFreq, double modIndex){
 //		  if(argc < 4)
 //		  {
 //		      printf("Usage: %s n s f\n", argv[0]);
@@ -144,10 +144,12 @@ public class Main {
 
 		  int i, n = 4;// filter order
 		  n = n/2;
-		  double f = 2*(s*modIndex);
-		  double a = Math.tan(Math.PI*f/s);
+		  double cutoffFreq = 2*(baseFreq*modIndex);
+		  
+		  double a = Math.tan(Math.PI*cutoffFreq/baseFreq);
 		  double a2 = a*a;
 		  double r;
+		  
 		  double[] A = new double[n];
 		  double[] d1 = new double[n];
 		  double[] d2 = new double[n];
@@ -158,10 +160,10 @@ public class Main {
 
 		  for(i=0; i<n; ++i){
 		    r = Math.sin(Math.PI*(2.0*i+1.0)/(4.0*n));
-		    s = a2 + 2.0*a*r + 1.0;
-		    A[i] = 1.0/s;
-		    d1[i] = 2.0*(1-a2)/s;
-		    d2[i] = -(a2 - 2.0*a*r + 1.0)/s;}
+		    baseFreq = a2 + 2.0*a*r + 1.0;
+		    A[i] = 1.0/baseFreq;
+		    d1[i] = 2.0*(1-a2)/baseFreq;
+		    d2[i] = -(a2 - 2.0*a*r + 1.0)/baseFreq;}
 
 		  for (float m : message){
 			  x = m;

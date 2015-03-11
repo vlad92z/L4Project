@@ -170,14 +170,15 @@ public class Modulator {
 				.getBytes(encoding);
 
 		float[] output = new float[message.length * 7 * samplesPerBit];
-
 		int samplesIndex = 0;
 		for (byte value : message) {
 			samplesIndex = frequencyDigit(value, output, samplesIndex, modIndex);
 		}
+		
 		float[] params = modulateParameters(StaticValues.MODULATION_FM,
 				samplesPerBit, frequency, modIndex,
 				StaticValues.ENCODING_UTF8);
+		
 		float[] startingSequence = modulateStartingSequence();
 		return output;
 //		return concat(concat(startingSequence, params), output);
