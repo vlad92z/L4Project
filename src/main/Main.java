@@ -29,7 +29,7 @@ public class Main {
 			
 //			float[] message = writer.modulateAmplitude(myString, 0.0, StaticValues.ENCODING_UTF8_VAL);
 			float[] message = writer.modulateFrequency(myString, modIndex, StaticValues.ENCODING_UTF8_VAL);
-			float[] msg = delay(message, frequency, modIndex);
+//			float[] msg = delay(message, frequency, modIndex);
 //			float sum = 0;
 //			int bitcounter = 0;
 //			for (int i = 0; i < msg.length; i++){
@@ -43,7 +43,7 @@ public class Main {
 //			}
 //			chebyshev(message, frequency, modIndex);
 //			highpass(message, frequency, modIndex);
-//			for (float v : message) {System.out.println(v);}			
+			for (float v : message) {System.out.println(v);}			
 			if (true) return;
 			
 			int index = 0;
@@ -150,6 +150,7 @@ public class Main {
 			sum+=Demodulator.getValue(index, message);
 			sum-=Demodulator.getValue(index-8, message);
 			del[index] = sum/8;
+			System.out.println(sum);
 		}
 		return del;
 		
