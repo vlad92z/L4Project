@@ -353,7 +353,7 @@ public class Demodulator {
 			if (bitIndex >= samplesPerBit) {
 				bitIndex = 0;
 				//System.out.println(sum / samplesPerBit);
-				if (sum / samplesPerBit > 0.5) {
+				if (sum / samplesPerBit > 0.15) {
 					byteString += 0;
 				} else
 					byteString += 1;
@@ -390,6 +390,16 @@ public class Demodulator {
 	public static double getValue(int index, float[] list) {
 		if (index < 0 || index >= list.length)
 			return 0;
+		else
+			return list[index];
+	}
+	
+	/**
+	 * returns the value at that index returns 0 if out of bounds
+	 */
+	public static double getValueFirst(int index, float[] list) {
+		if (index < 0 || index >= list.length)
+			return list[0];
 		else
 			return list[index];
 	}
